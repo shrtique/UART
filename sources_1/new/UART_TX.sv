@@ -1,3 +1,4 @@
+`timescale 1ns / 1ns
 module UART_TX # (
   parameter         CLK_FREQ     = 100000000,
   parameter         BAUD_RATE    = 115200,
@@ -45,7 +46,7 @@ logic       tx_data;
 logic       tx_done;
 
 logic [7:0] data_shifter, reg_data_shifter;
-logic [3:0] bit_cnt, reg_bit_cnt;
+logic [2:0] bit_cnt, reg_bit_cnt;
 //
 
 always_ff @ ( posedge i_clk, negedge i_aresetn ) begin

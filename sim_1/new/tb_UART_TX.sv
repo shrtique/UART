@@ -50,7 +50,7 @@ initial begin
   @(negedge clk) resetn = 1;
 end
 
-always begin
+initial begin
   change = 0;	
   #50;
   change = 1; 	
