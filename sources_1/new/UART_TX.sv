@@ -1,4 +1,6 @@
 `timescale 1ns / 1ns
+
+
 module UART_TX # (
   parameter         CLK_FREQ     = 100000000,
   parameter         BAUD_RATE    = 115200,
@@ -9,6 +11,7 @@ module UART_TX # (
   input  logic       i_clk,
   input  logic       i_aresetn,
 
+  input  logic       i_rx_busy,
   input  logic       i_tx_start,
   input  logic [7:0] i_tx_data,
 
@@ -61,7 +64,7 @@ end
 always_ff @ ( posedge i_clk, negedge i_aresetn ) begin
     if ( ~i_aresetn ) begin
       o_tx_data   <= 1'b1;
-      o_tx_done   <= 1'b0;
+      o_tx_done   <= 1'b1;
       reg_bit_cnt <= '0;
     end else begin
       o_tx_data   <= tx_data;
@@ -78,15 +81,16 @@ end
 always_comb begin
   nextstate    = state;
   tx_data      = o_tx_data;
-  tx_done      = 1'b0;
+  tx_done      = o_tx_done;
   data_shifter = reg_data_shifter;
   bit_cnt      = reg_bit_cnt;
   case ( state )
 
     IDLE : begin
-
-      if ( ( i_tx_start ) && ( baud_tick ) ) begin
+      
+      if ( ( i_tx_start ) && ( ~i_rx_busy ) ) begin
       	tx_data      = 1'b0;
+      	tx_done      = 1'b0;
       	data_shifter = i_tx_data;
         nextstate    = START;
       end

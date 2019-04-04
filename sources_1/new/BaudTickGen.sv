@@ -1,4 +1,6 @@
 `timescale 1ns / 1ns
+
+
 module BaudTickGen # (
 
   parameter         CLK_FREQ     = 100000000,

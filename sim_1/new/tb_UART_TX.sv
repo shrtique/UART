@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 04.04.2019 10:56:57
-// Design Name: 
-// Module Name: tb_UART_TX
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module tb_UART_TX();
 
@@ -38,7 +18,7 @@ initial begin
   clk <= 1'b0;
 
   forever begin
-  	#(`HALF_PER);
+    #(`HALF_PER);
     clk = ~clk;
   end
 end
