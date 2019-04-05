@@ -103,5 +103,22 @@ UART_RX # (
 //INST RX
 
 
+//INST CHECKER
+//
+tb_UART_result_checker RESULT_CHECKER (
+
+  .i_clk      ( clk     ),
+  .i_aresetn  ( resetn  ),
+
+  .i_tx_start ( start   ),
+  .i_tx_data  ( data    ),
+
+  .i_rx_done  ( rx_done ),
+  .i_rx_data  ( rx_data )
+
+);
+//
+//INST CHECKER
+
 ///////////////////////////////////////////////////////////////////////
 endmodule
